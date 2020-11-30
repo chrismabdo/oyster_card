@@ -3,8 +3,11 @@ require 'oystercard'
 describe Oystercard do
 
   it "starts with a default balance of 0" do
-    card = Oystercard.new
-    expect(card.balance).to eq 0
+    expect(subject.balance).to eq 0
+  end
+
+  it "can be topped up by a custom amount" do
+    expect(subject.top_up(5)).to eq 5
   end
 
 end
