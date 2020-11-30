@@ -16,6 +16,8 @@ rvm list
 - add the rspec gem to ‘test’ and ’development’ groups
 - commit only this Gemfile
 
+## Learn debugging basics
+
 - Write down the type of error in the issue comments
 
 NameError:
