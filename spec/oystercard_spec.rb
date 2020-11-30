@@ -22,6 +22,7 @@ describe Oystercard do
 
   describe "#touch_in" do
     it "should confirm that the card has been touched in" do
+      subject.top_up(1)
       subject.touch_in
       expect(subject.in_journey).to eq true
     end
@@ -29,6 +30,7 @@ describe Oystercard do
 
   describe "#touch_out" do
     it "should confirm that the card has been touched out" do
+      subject.top_up(1)
       subject.touch_in
       subject.touch_out
       expect(subject.in_journey).to eq false
@@ -37,8 +39,15 @@ describe Oystercard do
 
   describe "#in_journey" do
     it "should check whether the card is in journey or not" do
+      subject.top_up(1)
       subject.touch_in
       expect(subject).to be_in_journey
+    end
+  end
+
+  describe "#minimum_amount" do
+    it "should raise an error unless the card contains the minimum amount" do
+      expect { subject.touch_in }.to raise_error "Not enough funds!"
     end
   end
 end
