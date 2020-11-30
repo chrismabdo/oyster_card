@@ -1,4 +1,4 @@
-require 'oystercard'
+require "oystercard"
 
 describe Oystercard do
   it "starts with a default balance of 0" do
@@ -15,10 +15,10 @@ describe Oystercard do
     end
   end
 
-  it "should deduct balance by a specified amount" do
-    subject.top_up(10)
-    expect(subject.deduct(10)).to eq 0
-  end
+  # it "should deduct balance by a specified amount" do
+  #   subject.top_up(10)
+  #   expect(subject.deduct(10)).to eq 0
+  # end
 
   describe "#touch_in" do
     it "should confirm that the card has been touched in" do
@@ -34,6 +34,11 @@ describe Oystercard do
       subject.touch_in
       subject.touch_out
       expect(subject.in_journey).to eq false
+    end
+    it "should deduct the fair of the journey" do
+      subject.top_up(1)
+      subject.touch_in
+      expect { subject.touch_out }.to change { subject.balance }.by(-1)
     end
   end
 
